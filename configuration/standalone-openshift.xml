@@ -141,7 +141,7 @@
         <subsystem xmlns="urn:jboss:domain:datasources:6.0">
             <datasources>
                 <datasource jndi-name="java:/mysql" pool-name="mysql" enabled="false" statistics-enabled="true">
-                    <connection-url>jdbc:mysql://10.64.21.214:3306/TEST</connection-url>
+                    <connection-url>jdbc:mysql://172.30.16.14:3306/aaaa</connection-url>
                     <connection-property name="connectTimeout">
                         10000
                     </connection-property>
@@ -155,8 +155,8 @@
                         <prefill>true</prefill>
                     </pool>
                     <security>
-                        <user-name>maria</user-name>
-                        <credential-reference store="ENC_test" alias="ENC_test"/>
+                      <user-name>aaaa</user-name>
+                      <password>aaaa</password>
                     </security>
                     <validation>
                         <validate-on-match>false</validate-on-match>
