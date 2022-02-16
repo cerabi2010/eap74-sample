@@ -140,41 +140,9 @@
         <subsystem xmlns="urn:jboss:domain:bean-validation:1.0"/>
         <subsystem xmlns="urn:jboss:domain:datasources:6.0">
             <datasources>
-                <datasource jndi-name="java:jboss/datasources/ExampleDS" pool-name="ExampleDS" enabled="true" use-java-context="true">
-                    <connection-url>jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE</connection-url>
-                    <driver>h2</driver>
-                    <security>
-                        <user-name>sa</user-name>
-                        <password>sa</password>
-                    </security>
-                </datasource>
-                <datasource jndi-name="java:/mysql" pool-name="mysql" enabled="false" statistics-enabled="true">
-                    <connection-url>jdbc:mysql://172.30.16.14:3306/aaaa</connection-url>
-                    <driver>mysql</driver>
-                    <pool>
-                        <min-pool-size>5</min-pool-size>
-                        <max-pool-size>5</max-pool-size>
-                        <prefill>true</prefill>
-                    </pool>
-                    <security>
-                      <user-name>aaaa</user-name>
-                      <password>aaaa</password>
-                    </security>
-                    <timeout>
-                        <idle-timeout-minutes>15</idle-timeout-minutes>
-                        <query-timeout>30</query-timeout>
-                    </timeout>
-                    <statement>
-                        <prepared-statement-cache-size>20</prepared-statement-cache-size>
-                        <share-prepared-statements>true</share-prepared-statements>
-                    </statement>
-                </datasource>
                 <drivers>
                     <driver name="h2" module="com.h2database.h2">
                         <xa-datasource-class>org.h2.jdbcx.JdbcDataSource</xa-datasource-class>
-                    </driver>
-                    <driver name="mysql" module="com.mysql">
-                        <driver-class>com.mysql.jdbc.Driver</driver-class>
                     </driver>
                 </drivers>
             </datasources>
