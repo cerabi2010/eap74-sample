@@ -449,11 +449,6 @@
                     <protocol type="pbcast.NAKACK2"/>
                     <protocol type="UNICAST3"/>
                     <protocol type="pbcast.STABLE"/>
-                    <auth-protocol type="AUTH">
-                        <digest-token algorithm="SHA-512">
-                            <shared-secret-reference clear-text="XnJWnEvA"/>
-                        </digest-token>
-                    </auth-protocol>
                     <protocol type="pbcast.GMS"/>
                     <protocol type="MFC"/>
                     <protocol type="FRAG3"/>
@@ -471,11 +466,13 @@
                     <protocol type="pbcast.NAKACK2"/>
                     <protocol type="UNICAST3"/>
                     <protocol type="pbcast.STABLE"/>
+<!--
                     <auth-protocol type="AUTH">
                         <digest-token algorithm="SHA-512">
                             <shared-secret-reference clear-text="XnJWnEvA"/>
                         </digest-token>
                     </auth-protocol>
+-->
                     <protocol type="pbcast.GMS"/>
                     <protocol type="UFC"/>
                     <protocol type="MFC"/>
