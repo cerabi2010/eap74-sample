@@ -596,7 +596,10 @@
                     <http-invoker security-realm="ApplicationRealm"/>
                 </host>
             </server>
+<!--
             <servlet-container name="default" default-encoding="utf-8">
+-->
+            <servlet-container name="default">
                 <jsp-config/>
                 <websockets/>
             </servlet-container>
