@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
 echo "test postscritp"
-umask 0002
+echo 'umask 0002' >> /home/username/.bashrc
