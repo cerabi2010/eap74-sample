@@ -601,7 +601,7 @@
 -->
             <servlet-container name="default">
                 <jsp-config/>
-                <session-cookie name="JSESSSIONID" domain="yourdomain.com" /> <!-- added -->
+                <session-cookie name="JSESSSIONID" domain="apps.shlee.com" /> <!-- added -->
                 <websockets/>
             </servlet-container>
             <handlers>
