@@ -1,5 +1,7 @@
 echo " test umask!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 
-umask 0002
+#umask 0002
+echo 'umask 0002' >> /etc/profile
+
 /usr/local/s2i/assemble
 exit $?
