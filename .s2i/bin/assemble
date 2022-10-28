@@ -1,6 +1,6 @@
 echo " test umask!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 
-#/bin/umask 0002
+/bin/umask 0002
 
 /usr/local/s2i/assemble
 exit $?
