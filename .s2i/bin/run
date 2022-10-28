@@ -1,5 +1,0 @@
-#!/bin/sh
-umask 0002
-
-. "${JBOSS_CONTAINER_WILDFLY_S2I_MODULE}/run.sh"
-
