@@ -110,14 +110,15 @@
             <root-logger>
                 <level name="INFO"/>
                 <handlers>
-<!--
                     <handler name="CONSOLE"/>
--->
                     <handler name="FILE"/>
                 </handlers>
             </root-logger>
             <formatter name="COLOR-PATTERN">
                 <pattern-formatter pattern="%K{level}%d{HH:mm:ss,SSS} %-5p [%c] (%t) %s%e%n"/>
+            </formatter>
+            <formatter name="PATTERN">
+                <pattern-formatter pattern="%d{yyyy-MM-dd HH:mm:ss,SSS} %-5p [%c] (%t) %s%e%n"/>
             </formatter>
             <formatter name="OPENSHIFT">
                 <json-formatter>
@@ -595,6 +596,7 @@
             <server name="default-server">
                 <http-listener name="default" socket-binding="http" redirect-socket="https" proxy-address-forwarding="true" enable-http2="true"/>
                 <host name="default-host" alias="localhost">
+                   <access-log directory="${jboss.server.log.dir}/${HOSTNAME}" pattern="%a %t %H %p %U %s %S %T"/>
                     <location name="/" handler="welcome-content"/>
                     <http-invoker security-realm="ApplicationRealm"/>
                 </host>
