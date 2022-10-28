@@ -1,7 +1,9 @@
+#!/bin/sh
 echo " test umask!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 
 #umask 0002
 echo 'umask 0002' >> /etc/profile
+sed -ie '3 i\umask 0002' /opt/eap/bin/launch/launch.sh
 
 /usr/local/s2i/assemble
 exit $?
