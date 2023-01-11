@@ -604,11 +604,8 @@
             <server name="default-server">
                 <http-listener name="default" socket-binding="http" redirect-socket="https" proxy-address-forwarding="true" enable-http2="true" allow-unescaped-characters-in-url="true"/>
                 <host name="default-host" alias="localhost">
-                   <location name="/" handler="LBProxy"/>
                    <access-log directory="${jboss.server.log.dir}/${HOSTNAME}" pattern="%a %t %H %p %U %s %S %T"/>
-<!--
                     <location name="/" handler="welcome-content"/>
--->
                     <http-invoker security-realm="ApplicationRealm"/>
                 </host>
             </server>
@@ -622,9 +619,6 @@
             </servlet-container>
             <handlers>
                 <file name="welcome-content" path="${jboss.home.dir}/welcome-content"/>
-                <reverse-proxy name="LBProxy" connection-idle-timeout="60">
-                    <host name="backend-host1" outbound-socket-binding="backend-host1" scheme="ajp" path="/TestApp" instance-id="node1"/>
-                </reverse-proxy>
             </handlers>
         </subsystem>
         <subsystem xmlns="urn:jboss:domain:webservices:2.0" statistics-enabled="${wildfly.webservices.statistics-enabled:${wildfly.statistics-enabled:false}}">
@@ -673,9 +667,6 @@
         </outbound-socket-binding>
         <outbound-socket-binding name="mail-smtp">
             <remote-destination host="${jboss.mail.server.host:localhost}" port="${jboss.mail.server.port:25}"/>
-        </outbound-socket-binding>
-        <outbound-socket-binding name="backend-host1">
-            <remote-destination host="10.65.40.60" port="8009"/>
         </outbound-socket-binding>
     </socket-binding-group>
 </server>
