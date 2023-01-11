@@ -623,7 +623,7 @@
             <handlers>
                 <file name="welcome-content" path="${jboss.home.dir}/welcome-content"/>
                 <reverse-proxy name="LBProxy" connection-idle-timeout="60">
-                    <host name="backend-host1" outbound-socket-binding="backend-host1" scheme="ajp" path="/" instance-id="node1"/>
+                    <host name="backend-host1" outbound-socket-binding="backend-host1" scheme="http" path="/" instance-id="node1"/>
                 </reverse-proxy>
             </handlers>
         </subsystem>
@@ -675,7 +675,7 @@
             <remote-destination host="${jboss.mail.server.host:localhost}" port="${jboss.mail.server.port:25}"/>
         </outbound-socket-binding>
         <outbound-socket-binding name="backend-host1">
-            <remote-destination host="10.65.40.60" port="8009"/>
+            <remote-destination host="10.65.40.40" port="81"/>
         </outbound-socket-binding>
     </socket-binding-group>
 </server>
