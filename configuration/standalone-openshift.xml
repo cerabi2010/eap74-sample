@@ -613,11 +613,13 @@
                 </host>
             </server>
 <!--
-            <servlet-container name="default" default-encoding="utf-8">
--->
             <servlet-container name="default">
+-->
+            <servlet-container name="default" default-encoding="utf-8">
                 <jsp-config/>
+<!--
                 <session-cookie name="JSESSSIONID" domain="apps.shlee.com" /> <!-- added -->
+-->
                 <websockets/>
             </servlet-container>
             <handlers>
