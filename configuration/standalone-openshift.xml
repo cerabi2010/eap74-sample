@@ -675,7 +675,10 @@
             <remote-destination host="${jboss.mail.server.host:localhost}" port="${jboss.mail.server.port:25}"/>
         </outbound-socket-binding>
         <outbound-socket-binding name="backend-host1">
+<!--
             <remote-destination host="10.65.40.40" port="81"/>
+-->
+            <remote-destination host="cp-was" port="8080"/>
         </outbound-socket-binding>
     </socket-binding-group>
 </server>
