@@ -617,8 +617,9 @@
 -->
             <servlet-container name="default" default-encoding="utf-8">
                 <jsp-config/>
+<!-- added -->
 <!--
-                <session-cookie name="JSESSSIONID" domain="apps.shlee.com" /> <!-- added -->
+                <session-cookie name="JSESSSIONID" domain="apps.shlee.com" />
 -->
                 <websockets/>
             </servlet-container>
