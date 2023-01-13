@@ -623,7 +623,7 @@
             <handlers>
                 <file name="welcome-content" path="${jboss.home.dir}/welcome-content"/>
                 <reverse-proxy name="LBProxy" connection-idle-timeout="60">
-                    <host name="${HOSTNAME}" outbound-socket-binding="backend-host1" scheme="http" path="/" instance-id="1234"/>
+                    <host name="${HOSTNAME}" outbound-socket-binding="backend-host1" scheme="http" path="/" instance-id="${HOSTNAME}"/>
                 </reverse-proxy>
             </handlers>
         </subsystem>
