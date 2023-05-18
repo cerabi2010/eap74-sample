@@ -160,7 +160,8 @@
             </datasources>
         </subsystem>
         <subsystem xmlns="urn:jboss:domain:deployment-scanner:2.0">
-            <deployment-scanner path="deployments" relative-to="jboss.server.base.dir" scan-interval="5000" auto-deploy-exploded="false" runtime-failure-causes-rollback="${jboss.deployment.scanner.rollback.on.failure:false}"/>
+            <deployment-scanner path="deployments" relative-to="jboss.server.base.dir" scan-interval="5000" auto-deploy-exploded="true" runtime-failure-causes-rollback="${jboss.deployment.scanner.rollback.on.failure:false}"/>
+            <deployment-scanner name="new-external-deployment-scanner" path="/123" scan-interval="5000" auto-deploy-exploded="true"  runtime-failure-causes-rollback="${jboss.deployment.scanner.rollback.on.failure:false}"/>
         </subsystem>
         <subsystem xmlns="urn:jboss:domain:discovery:1.0"/>
         <subsystem xmlns="urn:jboss:domain:distributable-web:2.0" default-session-management="default" default-single-sign-on-management="default">
@@ -604,21 +605,30 @@
             <server name="default-server">
                 <http-listener name="default" socket-binding="http" redirect-socket="https" proxy-address-forwarding="true" enable-http2="true" allow-unescaped-characters-in-url="true"/>
                 <host name="default-host" alias="localhost">
+                   <location name="/" handler="LBProxy"/>
                    <access-log directory="${jboss.server.log.dir}/${HOSTNAME}" pattern="%a %t %H %p %U %s %S %T"/>
+<!--
                     <location name="/" handler="welcome-content"/>
+-->
                     <http-invoker security-realm="ApplicationRealm"/>
                 </host>
             </server>
 <!--
-            <servlet-container name="default" default-encoding="utf-8">
--->
             <servlet-container name="default">
+-->
+            <servlet-container name="default" default-encoding="utf-8">
                 <jsp-config/>
-                <session-cookie name="JSESSSIONID" domain="apps.shlee.com" /> <!-- added -->
+<!-- added -->
+<!--
+                <session-cookie name="JSESSSIONID" domain="apps.shlee.com" />
+-->
                 <websockets/>
             </servlet-container>
             <handlers>
                 <file name="welcome-content" path="${jboss.home.dir}/welcome-content"/>
+                <reverse-proxy name="LBProxy" connection-idle-timeout="60">
+                    <host name="${HOSTNAME}" outbound-socket-binding="backend-host1" scheme="http" path="/" instance-id="${HOSTNAME}"/>
+                </reverse-proxy>
             </handlers>
         </subsystem>
         <subsystem xmlns="urn:jboss:domain:webservices:2.0" statistics-enabled="${wildfly.webservices.statistics-enabled:${wildfly.statistics-enabled:false}}">
@@ -667,6 +677,12 @@
         </outbound-socket-binding>
         <outbound-socket-binding name="mail-smtp">
             <remote-destination host="${jboss.mail.server.host:localhost}" port="${jboss.mail.server.port:25}"/>
+        </outbound-socket-binding>
+        <outbound-socket-binding name="backend-host1">
+<!--
+            <remote-destination host="10.65.40.40" port="81"/>
+-->
+            <remote-destination host="cp-was" port="8080"/>
         </outbound-socket-binding>
     </socket-binding-group>
 </server>
