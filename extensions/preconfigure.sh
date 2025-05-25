@@ -1,2 +1,2 @@
 #!/bin/sh
-/bin/umask 0002
+#/bin/umask 0002
