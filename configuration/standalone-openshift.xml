@@ -141,7 +141,7 @@
         <subsystem xmlns="urn:jboss:domain:datasources:6.0">
             <datasources>
                 <datasource jndi-name="java:jboss/testdb" pool-name="testdb">
-                  <connection-url>jdbc:mysql://10.65.47.40:3306/mysql</connection-url>
+                  <connection-url>jdbc:mysql://10.65.47.40:3306/testdb</connection-url>
                   <driver>mysql</driver>
                   <security>
                     <user-name>testdb</user-name>
