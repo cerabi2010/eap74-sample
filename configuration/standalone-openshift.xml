@@ -147,12 +147,14 @@
                     <user-name>testdb</user-name>
                     <password>testdb</password>
                   </security>
+		  <!--
                   <validation>
                     <valid-connection-checker class-name="org.jboss.jca.adapters.jdbc.extensions.mysql.MySQLValidConnectionChecker"/>
                     <validate-on-match>true</validate-on-match>
                     <background-validation>false</background-validation>
                     <exception-sorter class-name="org.jboss.jca.adapters.jdbc.extensions.mysql.MySQLExceptionSorter"/>
                   </validation>
+		  -->
                 </datasource>
                 <drivers>
                     <driver name="h2" module="com.h2database.h2">
@@ -160,12 +162,13 @@
                     </driver>
                 </drivers>
                 <driver name="mysql" module="com.mysql">
-                  <driver-class>com.mysql.jdbc.Driver</driver-class>
+                    <driver-class>com.mysql.cj.jdbc.Driver</driver-class>
+                    <xa-datasource-class>com.mysql.cj.jdbc.MysqlXADataSource</xa-datasource-class>
                 </driver>
             </datasources>
         </subsystem>
         <subsystem xmlns="urn:jboss:domain:deployment-scanner:2.0">
-            <deployment-scanner path="deployments" relative-to="jboss.server.base.dir" scan-interval="5000" runtime-failure-causes-rollback="${jboss.deployment.scanner.rollback.on.failure:false}"/>
+            <deployment-scanner path="deployments" relative-to="jboss.server.base.dir" scan-interval="5000" runtime-failure-causes-rollback="${jboss.deployment.scanner.rollback.on.failure:false}" auto-deploy-exploded="true"/>
         </subsystem>
         <subsystem xmlns="urn:jboss:domain:discovery:1.0"/>
         <subsystem xmlns="urn:jboss:domain:distributable-web:2.0" default-session-management="default" default-single-sign-on-management="default">
