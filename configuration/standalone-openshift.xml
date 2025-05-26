@@ -151,14 +151,12 @@
                     <min-pool-size>10</min-pool-size>
                     <max-pool-size>10</max-pool-size>
                   </pool>
-		  <!--
                   <validation>
                     <valid-connection-checker class-name="org.jboss.jca.adapters.jdbc.extensions.mysql.MySQLValidConnectionChecker"/>
                     <validate-on-match>true</validate-on-match>
                     <background-validation>false</background-validation>
                     <exception-sorter class-name="org.jboss.jca.adapters.jdbc.extensions.mysql.MySQLExceptionSorter"/>
                   </validation>
-		  -->
                 </datasource>
                 <drivers>
                     <driver name="h2" module="com.h2database.h2">
