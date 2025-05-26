@@ -1,0 +1,38 @@
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  labels:
+    machineconfiguration.openshift.io/role: infra
+  name: 90-bug-ocpbugs-42303-mitigation
+spec:
+  config:
+    ignition:
+      version: 3.2.0
+    storage:
+      files:
+      - contents:
+          source: data:,%23%21%2Fbin%2Fbash%0A%0Arm%20-f%20%2Fvar%2Flib%2Fovn-ic%2Fetc%2Fovn%2A.db
+        mode: 493
+        overwrite: true
+        path: /usr/local/bin/refresh-ovndb.sh
+    systemd:
+      units:
+      - contents: |
+          [Unit]
+          # This service was created to workaround the bug OCPBUGS-42303
+          # The objective is deleting the ovndb before the ovs-configuration.service
+          # Once the ovndbs are removed, the ovn-controller is going to create a new one
+          Requires=ovs-configuration.service
+          Before=ovs-configuration.service
+
+          [Service]
+          # Need oneshot to delay kubelet
+          Type=oneshot
+          ExecStart=/usr/local/bin/refresh-ovndb.sh
+          StandardOutput=journal+console
+          StandardError=journal+console 
+
+          [Install]
+          RequiredBy=ovs-configuration.service
+        enabled: true
+        name: workaround-ocpbugs42303.service
